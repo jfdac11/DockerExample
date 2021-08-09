@@ -1,0 +1,25 @@
+#especificar versão do composer(orquestrador de containers)
+version: "3"
+
+services: 
+    train: 
+        build:
+            context: .
+            dockerfile: Dockerfile #especifica qual dockerfile vai ser usada
+        command: python3 train.py #comando para executar   
+        volumes: 
+            - .:/usr/app/testedocker #cria o container no disco
+
+    inference:
+        #especifica que a inferencia depende do treinamento (não rode a inferencia sem rodar o train antes)
+        depends_on: 
+            - 'train'
+        build:  
+            context: .
+            dockerfile: Dockerfile2
+        command: python3 inference.py
+        volumes: 
+            - .:/usr/app/testedocker 
+
+#para subir o compose <docker-compose up>
+
