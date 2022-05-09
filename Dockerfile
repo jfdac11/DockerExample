@@ -1,5 +1,5 @@
 #Importar imagem do docker, neste caso importar o python (alpine é mais leve)
-FROM python:3.8.11-alpine3.14 
+FROM python:3.8.11
 
 #Diretorio onde do container do docker
 WORKDIR /usr/app/testedocker 
